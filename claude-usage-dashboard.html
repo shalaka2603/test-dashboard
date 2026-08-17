@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude usage dashboard</title>
+<style>
+  :root {
+    --bg: #FAF9F6;
+    --card: #FFFFFF;
+    --border: #E5E2D9;
+    --text: #1F1E1B;
+    --text-secondary: #6B6960;
+    --text-muted: #9A9789;
+    --teal: #0F6E56;
+    --teal-light: #E1F5EE;
+    --purple: #534AB7;
+    --purple-light: #EEEDFE;
+    --coral: #993C1D;
+    --coral-light: #FAECE7;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+  header {
+    margin-bottom: 2rem;
+  }
+  header p.eyebrow {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin: 0 0 6px;
+  }
+  header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  header p.sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+  .metric {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+  }
+  .metric .label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0 0 6px;
+  }
+  .metric .value {
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0;
+  }
+  section {
+    margin-bottom: 2.25rem;
+  }
+  section h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin: 0 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .bars { display: flex; flex-direction: column; gap: 10px; }
+  .bar-row {
+    display: grid;
+    grid-template-columns: 190px 1fr 28px;
+    align-items: center;
+    gap: 12px;
+  }
+  .bar-row .name { font-size: 14px; }
+  .bar-track {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    height: 12px;
+    overflow: hidden;
+  }
+  .bar-fill { height: 100%; border-radius: 6px; }
+  .bar-row .count { font-size: 14px; color: var(--text-secondary); text-align: right; }
+  .timeline { display: flex; flex-direction: column; gap: 10px; }
+  .item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.15rem;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .icon.marketing { background: var(--teal-light); color: var(--teal); }
+  .icon.technical { background: var(--purple-light); color: var(--purple); }
+  .icon.ops { background: var(--coral-light); color: var(--coral); }
+  .item-body { flex: 1; min-width: 0; }
+  .item-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .item-top .title { font-size: 15px; font-weight: 600; margin: 0; }
+  .item-top .date { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+  .item-body .desc { font-size: 13.5px; color: var(--text-secondary); margin: 5px 0 0; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-top: 8px;
+    font-weight: 500;
+  }
+  .tag.marketing { background: var(--teal-light); color: var(--teal); }
+  .tag.technical { background: var(--purple-light); color: var(--purple); }
+  .tag.ops { background: var(--coral-light); color: var(--coral); }
+  footer {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 1.5rem;
+  }
+  @media (max-width: 520px) {
+    .bar-row { grid-template-columns: 120px 1fr 24px; }
+    .item-top { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Personal usage summary</p>
+    <h1>Your Claude activity</h1>
+    <p class="sub">Based on conversations from Jul 22 &ndash; Aug 17, 2026</p>
+  </header>
+
+  <section class="metrics">
+    <div class="metric">
+      <p class="label">Conversations</p>
+      <p class="value">4</p>
+    </div>
+    <div class="metric">
+      <p class="label">Date range</p>
+      <p class="value">26 days</p>
+    </div>
+    <div class="metric">
+      <p class="label">Task categories</p>
+      <p class="value">3</p>
+    </div>
+    <div class="metric">
+      <p class="label">Most active area</p>
+      <p class="value">Marketing</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>By category</h2>
+    <div class="bars">
+      <div class="bar-row">
+        <span class="name">Marketing / Hindi translation</span>
+        <div class="bar-track"><div class="bar-fill" style="width:50%; background:#0F6E56;"></div></div>
+        <span class="count">2</span>
+      </div>
+      <div class="bar-row">
+        <span class="name">Web / technical</span>
+        <div class="bar-track"><div class="bar-fill" style="width:25%; background:#534AB7;"></div></div>
+        <span class="count">1</span>
+      </div>
+      <div class="bar-row">
+        <span class="name">Ops / admin data</span>
+        <div class="bar-track"><div class="bar-fill" style="width:25%; background:#993C1D;"></div></div>
+        <span class="count">1</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Timeline</h2>
+    <div class="timeline">
+
+      <div class="item">
+        <div class="icon technical">&lt;/&gt;</div>
+        <div class="item-body">
+          <div class="item-top">
+            <p class="title">Competitive dashboard build and deploy fix</p>
+            <span class="date">Aug 17</span>
+          </div>
+          <p class="desc">Reviewed an HTML/Chart.js dashboard comparing Pool Maxx vs a competitor, then debugged a GitHub Pages / Cloudflare 404 down to a file naming fix.</p>
+          <span class="tag technical">Technical</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="icon marketing">A</div>
+        <div class="item-body">
+          <div class="item-top">
+            <p class="title">Hindi brochure translation</p>
+            <span class="date">Jul 30</span>
+          </div>
+          <p class="desc">Full 12-section Pool Maxx brochure translated into conversational Hindi, with brand and technical terms kept in English.</p>
+          <span class="tag marketing">Marketing</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="icon ops">&#8213;</div>
+        <div class="item-body">
+          <div class="item-top">
+            <p class="title">Site measurement bifurcation</p>
+            <span class="date">Jul 27</span>
+          </div>
+          <p class="desc">Construction site measurements sorted by material category, totaled (~2,960 sqft), and formatted for Google Sheets.</p>
+          <span class="tag ops">Ops</span>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="icon marketing">A</div>
+        <div class="item-body">
+          <div class="item-top">
+            <p class="title">Clear Maxx voiceover script + Hindi version</p>
+            <span class="date">Jul 22</span>
+          </div>
+          <p class="desc">Tried several offline transcription approaches on a promo video, then translated the supplied voiceover script into Hindi for a second version.</p>
+          <span class="tag marketing">Marketing</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>Generated from your Claude conversation history &middot; claude.ai</footer>
+
+</div>
+</body>
+</html>
