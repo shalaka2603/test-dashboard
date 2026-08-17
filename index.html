@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pool Maxx — Dashboards</title>
+<style>
+  :root{
+    --bg:#F4F9F8;
+    --card:#FFFFFF;
+    --ink:#122B29;
+    --ink-soft:#5C7472;
+    --line:#DCEAE7;
+    --teal:#0E6C63;
+    --teal-dark:#0A4D46;
+    --aqua:#12A594;
+    --aqua-soft:#DDF3EF;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .wrap{ max-width:1000px; margin:0 auto; padding:44px 28px 60px; }
+
+  header{ margin-bottom:34px; }
+  header h1{ margin:0 0 6px; font-size:26px; font-weight:800; letter-spacing:-0.02em; color:var(--teal-dark); }
+  header p{ margin:0; font-size:14px; color:var(--ink-soft); }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+    gap:18px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:22px 22px 20px;
+    text-decoration:none;
+    color:inherit;
+    display:block;
+    transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+  }
+  .card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(14,108,99,0.08);
+    border-color:var(--aqua);
+  }
+  .card .tag{
+    display:inline-block;
+    font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;
+    background:var(--aqua-soft); color:var(--teal);
+    padding:3px 10px; border-radius:999px; margin-bottom:12px;
+  }
+  .card h2{ margin:0 0 6px; font-size:17px; font-weight:800; }
+  .card p{ margin:0; font-size:13px; color:var(--ink-soft); line-height:1.5; }
+  .card .go{ margin-top:14px; font-size:12.5px; font-weight:700; color:var(--teal); }
+
+  footer{ margin-top:40px; font-size:12px; color:var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Pool Maxx — Dashboards</h1>
+    <p>All dashboards in one place. Click any card to open it.</p>
+  </header>
+
+  <div class="grid">
+
+    <a class="card" href="index.html">
+      <span class="tag">Competitive Intel</span>
+      <h2>Pool Maxx vs. Pool Shark</h2>
+      <p>Instagram &amp; Meta advertising comparison — chlorine-free vs. professional-grade positioning.</p>
+      <div class="go">Open dashboard &rarr;</div>
+    </a>
+
+    <a class="card" href="claude-usage-dashboard.html">
+      <span class="tag">Usage Summary</span>
+      <h2>Claude Usage Dashboard</h2>
+      <p>A summary of recent work done with Claude — marketing, technical, and ops tasks.</p>
+      <div class="go">Open dashboard &rarr;</div>
+    </a>
+
+  </div>
+
+  <footer>Add a new card here any time you upload a new dashboard file.</footer>
+</div>
+
+</body>
+</html>
